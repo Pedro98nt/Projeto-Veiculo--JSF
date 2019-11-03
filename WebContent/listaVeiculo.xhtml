@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+<h:head>
+	<title>Lista de veiculo</title>
+</h:head>
+<h:body>
+	<h:form>
+		<h:commandLink value="Menu" action="menu.xhtml" immediate="true" />
+		<h1>Lista de veiculo</h1>
+		<h:messages />
+		<h:dataTable border="1" value="#{veiculoController.lista}" var="veiculo">
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Id" />
+				</f:facet>
+				<h:outputText value="#{veiculo.id}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Marca" />
+				</f:facet>
+				<h:outputText value="#{veiculo.marca}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Fabricante" />
+				</f:facet>
+				<h:outputText value="#{veiculo.fabricante}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Valor"/>
+				</f:facet>
+				<h:outputText value="#{veiculo.valor}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Data de fabricação" />
+				</f:facet>
+				<h:outputText value="#{veiculo.dataFabricacao}">
+					<f:convertDateTime 
+						pattern="dd/MM/yyyy" timeZone="America/Sao_Paulo" />
+				</h:outputText>
+			</h:column>
+			<h:column>
+				<f:facet name="header">
+					<h:outputText value="Ação" />
+				</f:facet>
+				<h:commandButton value="Editar" action="#{veiculoController.editar}">
+					<f:setPropertyActionListener 
+						value="#{veiculo}" 
+						target="#{veiculoController.veiculo}" />
+				</h:commandButton>
+				<h:commandButton value="Excluir" action="#{veiculoController.excluir}"
+					onclick="return confirm('Confirma a exclusão?')">
+					<f:setPropertyActionListener 
+						value="#{veiculo}" 
+						target="#{veiculoController.veiculo}" />
+				</h:commandButton>
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</h:body>
+</html>
+
+
+
+
+
